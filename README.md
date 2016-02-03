@@ -8,8 +8,8 @@ Build Jmeter Runner configuration
 var jmeterRunner = new JmeterRunner(jmeterBat, new ArgsBuilder());
 jmeterRunner. ArgsBuilder
     .NonGui() //not Gui
-    .CollectReportableData(logsFile) //Collect data
-    .WithTestPlan(jmeterTestPlan); // use this test plan
+    .CollectReportableData(logsFile)
+    .WithTestPlan(jmeterTestPlan);
 ```
 
 Execute Test Plan
