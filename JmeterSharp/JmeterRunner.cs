@@ -5,10 +5,8 @@ using System.Linq;
 
 namespace JmeterSharp
 {
-    public enum PluginType
+    public enum PluginTypeGraph
     {
-        AggregateReport,
-        SynthesisReport,
         ThreadsStateOverTime,
         BytesThroughputOverTime,
         HitsPerSecond,
@@ -22,6 +20,11 @@ namespace JmeterSharp
         TransactionsPerSecond,
         PageDataExtractorOverTime,
         MergeResults
+    }
+    public enum PluginTypeCsv
+    {
+        AggregateReport,
+        SynthesisReport
     }
 
     public class JmeterRunner
@@ -45,17 +48,17 @@ namespace JmeterSharp
             return true;
         }
 
-        public string CreateSummaryReport(PluginType pluginType,string fileName, string logFile)
+        public string CreateSummaryReport(PluginTypeCsv pluginTypeCsv, string fileName, string logFile)
         {
-            return StartCmdPlugin(fileName, "--generate-csv", logFile, pluginType);
+            return StartCmdPlugin(fileName, "--generate-csv", logFile, pluginTypeCsv.ToString());
         }
 
-        public string CreateGraph(PluginType pluginType, string fileName, string logFile)
+        public string CreateGraph(PluginTypeGraph pluginTypeGraph, string fileName, string logFile)
         {
-            return StartCmdPlugin(fileName, "--generate-png", logFile, pluginType);
+            return StartCmdPlugin(fileName, "--generate-png", logFile, pluginTypeGraph.ToString());
         }
 
-        private string StartCmdPlugin(string fileName, string flagName, string file, PluginType pluginType)
+        private string StartCmdPlugin(string fileName, string flagName, string file, string pluginType)
         {
             string cmdRunner = _path.Replace(@"bin\jmeter.bat", @"\lib\ext\JMeterPluginsCMD.bat");
             var args = string.Format(

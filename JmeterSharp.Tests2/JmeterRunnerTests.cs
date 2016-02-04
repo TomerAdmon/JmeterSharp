@@ -27,11 +27,11 @@ namespace JmeterSharp.Tests
 
             /* Create Report
              */
-            jmeterRunner.CreateSummaryReport(PluginType.AggregateReport,
+            jmeterRunner.CreateSummaryReport(PluginTypeCsv.AggregateReport,
                 string.Format(@"C:\JmeterLogs\Summary{0}.csv", DateTime.Now.ToString("yyyyMMddHHmmssfff")), logsFile);
 
             Console.WriteLine(
-            jmeterRunner.CreateGraph(PluginType.HitsPerSecond, 
+            jmeterRunner.CreateGraph(PluginTypeGraph.HitsPerSecond, 
                 string.Format(@"C:\JmeterLogs\Graph{0}.png", DateTime.Now.ToString("yyyyMMddHHmmssfff")), logsFile));
         }
     }
