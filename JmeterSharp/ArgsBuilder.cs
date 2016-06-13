@@ -19,8 +19,22 @@ namespace JmeterSharp
         {
             this._arguments += string.Format("-t \"{0}\" ", testPlan);
             return this;
+        }
+
+        public ArgsBuilder WithAssersionReport()
+        {
+            const string assertionResults = "jmeter.save.saveservice.assertion_results=true";
+            this._arguments += string.Format("-J{0} ", assertionResults);
+            return this;
         } 
         
+        public ArgsBuilder WithFailedAssersionReport()
+        {
+            const string assertionResults = "jmeter.save.saveservice.assertion_results_failure_message=true";
+            this._arguments += string.Format("-J{0} ", assertionResults);
+            return this;
+        } 
+
         public ArgsBuilder CollectReportableData(string fileName)
         {
             this._arguments += string.Format("-l \"{0}\" ", fileName);

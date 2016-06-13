@@ -1,30 +1,28 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace JmeterSharp
 {
     public class ProcessManager
     {
-        private readonly string _path;
-        private readonly string _arguments;
+        private readonly string m_Path;
+        private readonly string m_Arguments;
 
         public ProcessManager(string path, string arguments)
         {
-            _path = path;
-            _arguments = arguments;
+            m_Path = path;
+            m_Arguments = arguments;
         }
 
         public string Start()
         {
             var process = new Process
             {
-                StartInfo = { FileName = _path }
+                StartInfo = { FileName = m_Path }
             };
 
-            process.StartInfo.Arguments = _arguments;
+            process.StartInfo.Arguments = m_Arguments;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.Verb = "runas";
-       //     process.StartInfo.WorkingDirectory = @"c:\users\tomer.a";
             process.StartInfo.RedirectStandardOutput = true;
             var stdout = string.Empty;
             try
